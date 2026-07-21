@@ -1,0 +1,39 @@
+# ── build outputs ─────────────────────────────────────────────────────────────
+bin/
+obj/
+output/
+evset/
+logs/
+*.log
+*.o
+*.d
+*.so
+*.pyc
+__pycache__/
+
+# compiled tools (produced by `make covert sidechannel`)
+/tools/spy
+/tools/trojan
+/tools/hitme_monitor
+
+# ── editor / OS ───────────────────────────────────────────────────────────────
+*.swp
+*.swo
+.DS_Store
+.claude/
+.vscode/
+
+# ── LaTeX / appendix (not part of the artifact) ───────────────────────────────
+artifact_appendix.*
+*.aux
+*.out
+*.pdf
+*.toc
+*.synctex.gz
+
+# ── working notes: track only README.md ───────────────────────────────────────
+*.md
+!README.md
+
+# ── misc ──────────────────────────────────────────────────────────────────────
+hitme_report.html
