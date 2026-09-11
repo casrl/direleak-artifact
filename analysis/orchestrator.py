@@ -49,8 +49,8 @@ EXPERIMENTS = [
      "script": "tools/run_covert.sh", "args": ["2", "8", "01101001", "16"],
      "plotter": "analysis/plot_covert.py", "figure": "covert_channel.png"},
     {"key": "sidechannel", "kind": "sidechannel",
-     "title": "[Figure. 13] ML-model fingerprinting side channel (30 models)",
-     "runs": 8, "fp": 15, "npz": "output/current/sidechannel.npz"},
+     "title": "[Figure. 13+14] ML-model fingerprinting side channel (30 models, offline)",
+     "script": "sidechannel_offline/classify_offline.py"},
 ]
 
 def slice_csv(cha):
@@ -395,22 +395,24 @@ def run_covert(exp):
     print("  NOTE: server was stopped for this artifact; it will auto-restart when you pick a framework artifact (or press 'r').")
 
 def run_sidechannel(exp):
+    # replayed from the shipped classifiers + trace subset: no hardware, no root,
+    # and the counter server keeps running.
     print(f"▶ {exp['title']}")
-    print(f"  stopping server; collecting {exp['runs']} runs x 30 models then training (~25-30 min) …")
-    if not ensure_tools("hitme_monitor"):
-        return
-    stop_server()
-    rc = stream(["python3", "analysis/collect_sidechannel.py",
-                 "--runs", str(exp["runs"]), "--fp", str(exp["fp"]),
-                 "--warmup", "2.5", "--out", exp["npz"]])
+    print("  classifying the shipped trace subset with the pre-trained models (a few seconds) …")
+    rc = stream(["python3", exp["script"]])
     if rc != 0:
-        print("✗ collection failed."); return
-    print("  training MLP classifiers (held-out run) …")
-    stream(["python3", "analysis/train_sidechannel.py", exp["npz"], "--test_runs", "1"])
-    stream(["python3", "analysis/plot_sidechannel.py", "cm"])
-    stream(["python3", "analysis/plot_sidechannel.py", "gram", exp["npz"]])
+        print("✗ offline classification failed."); return
     present(exp, FIG_DIR / "sc_confusion.png")
-    print("  NOTE: server was stopped for this artifact; it will auto-restart when you pick a framework artifact (or press 'r').")
+    gram = FIG_DIR / "sc_memorygram.png"
+    if gram.exists():
+        print()
+        print("  [Figure. 14]  HitME memorygrams — log per-set miss counts over time,")
+        print("                two samples each for VGG_16, VGG_19, ViT_B_16, ConvNeXt_Base.")
+        print("                Same-family models share a visibly similar fingerprint.")
+        try:
+            termshow.render(gram)
+        except Exception as e:
+            print(f"   (inline memorygram unavailable: {e})")
 
 RUNNERS = {"single": run_single, "sweep": run_sweep, "datatable": run_datatable,
            "pair": run_pair, "covert": run_covert, "sidechannel": run_sidechannel}

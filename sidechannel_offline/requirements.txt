@@ -1,0 +1,3 @@
+# no scikit-learn or joblib: the classifiers ship as weight arrays
+numpy>=1.24
+matplotlib>=3.5
