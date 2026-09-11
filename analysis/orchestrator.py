@@ -403,16 +403,7 @@ def run_sidechannel(exp):
     if rc != 0:
         print("✗ offline classification failed."); return
     present(exp, FIG_DIR / "sc_confusion.png")
-    gram = FIG_DIR / "sc_memorygram.png"
-    if gram.exists():
-        print()
-        print("  [Figure. 14]  HitME memorygrams — log per-set miss counts over time,")
-        print("                two samples each for VGG_16, VGG_19, ViT_B_16, ConvNeXt_Base.")
-        print("                Same-family models share a visibly similar fingerprint.")
-        try:
-            termshow.render(gram)
-        except Exception as e:
-            print(f"   (inline memorygram unavailable: {e})")
+    present("sc_gram")
 
 RUNNERS = {"single": run_single, "sweep": run_sweep, "datatable": run_datatable,
            "pair": run_pair, "covert": run_covert, "sidechannel": run_sidechannel}
