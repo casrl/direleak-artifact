@@ -51,19 +51,19 @@ To provision the host without launching the menu, run `sudo ./setup_env.sh` (und
 
 | # | Paper | What to look for |
 |---|---|---|
-| 1 | Figure 2 | A single tall bar at the home slice in the S1D1 domain; every other NUMA domain stays near zero — the directory is homed on one slice. |
-| 2 | Figure 3 | A clean diagonal across the 28×28 matrix: each home slice maps to exactly one observed CHA slice. |
-| 3 | Figure 5 | Two clearly separated latency modes — a fast MD-hit peak and a slower MD-miss peak. The gap is the exploitable timing signal. |
+| 1 | Figure 3 | A single tall bar at the home slice in the S1D1 domain; every other NUMA domain stays near zero — the directory is homed on one slice. |
+| 2 | Figure 4 | A clean diagonal across the 28×28 matrix: each home slice maps to exactly one observed CHA slice. |
+| 3 | Figure 6 | Two clearly separated latency modes — a fast MD-hit peak and a slower MD-miss peak. The gap is the exploitable timing signal. |
 | 4 | Table 3 | Residency turns on only for cross-socket transfers that leave the home holding a copy; all other transitions stay non-resident. |
 | 5 | Obs. 2 | The post-`CLFLUSH` bar collapses to ~0 next to the tall no-flush bar — a single `CLFLUSH` invalidates the directory entry. |
-| 6 | Figure 11 | Covert channel: the transmission set is evicted for a `1` and survives for a `0`; the decoded bit-stream matches the sent `01101001`. |
-| 7 | Figures 13 & 14 | Side channel: a bright block-diagonal confusion matrix — models are separable by their cross-socket MD footprint, far above chance — plus the memorygrams it reads. Runs offline, no hardware needed. |
+| 6 | Figure 12 | Covert channel: the transmission set is evicted for a `1` and survives for a `0`; the decoded bit-stream matches the sent `01101001`. |
+| 7 | Figures 14 & 15 | Side channel: a bright block-diagonal confusion matrix — models are separable by their cross-socket MD footprint, far above chance — plus the memorygrams it reads. Runs offline, no hardware needed. |
 
 ## Hardware access
 
 Artifacts 1–6 require a genuine dual-socket Intel Xeon host with the memory directory cache. If reviewers need hardware access, **coordinated (remote) access to the 2× Sapphire Rapids machine can be provided upon request.**
 
-Artifact 7 is the exception. It ships the trained classifiers and 300 of the attack traces, so it reproduces Figures 13 and 14 on any machine with `numpy` and `matplotlib`:
+Artifact 7 is the exception. It ships the trained classifiers and 300 of the attack traces, so it reproduces Figures 14 and 15 on any machine with `numpy` and `matplotlib`:
 
 ```bash
 python3 sidechannel_offline/classify_offline.py

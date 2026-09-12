@@ -29,7 +29,7 @@ def eviction_signal(rows):
 
     A transmitted 1 allocates in the transmission set and evicts the Spy's primed
     lines (high signal); a 0 leaves them resident (low signal).  We plot the number
-    of evicted lines relative to the primed baseline, so — as in Figure 11 —
+    of evicted lines relative to the primed baseline, so — as in Figure 12 —
     HIGH = evicted = 1 and LOW = survives = 0."""
     thr  = rows[0]["thr"]
     base = max([r["tx"] for r in rows] + [2.0 * thr, 1.0])   # primed / survive level

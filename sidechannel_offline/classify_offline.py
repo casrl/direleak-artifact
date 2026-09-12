@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Offline ML-model fingerprinting: classify the shipped HitME traces with the
-shipped classifiers and render Figure 13 (confusion) and Figure 14 (memorygrams).
+shipped classifiers and render Figure 14 (confusion) and Figure 15 (memorygrams).
 
     python3 sidechannel_offline/classify_offline.py
 

@@ -10,7 +10,7 @@
 # Usage: sudo ./tools/run_covert.sh [W] [E] [PAYLOAD_BITS] [R]
 #   W       spy prime lines per set   (= MD associativity; default 2)
 #   E       trojan flood lines per set (default 8)
-#   PAYLOAD bit string to transmit    (default 01101001, the paper's Fig-11 example)
+#   PAYLOAD bit string to transmit    (default 01101001, the paper's Fig-12 example)
 #   R       prime/probe sub-rounds summed per bit (signal amplification; default 16)
 #
 # Output: output/current/covert_trace.csv   (per-window HITME_HIT trace)

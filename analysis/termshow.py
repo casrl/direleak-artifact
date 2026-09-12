@@ -418,17 +418,17 @@ def _sum_gram(repo):
 
 # key -> (artifact no., title, figure filename or None, what-to-look-for, summarizer)
 ARTIFACTS = {
-    "fig2": (1, "[Figure 2]  per-slice HITME_LOOKUP for one home slice",
+    "fig2": (1, "[Figure 3]  per-slice HITME_LOOKUP for one home slice",
              "figure2_benchmark10.png",
              "One tall bar at the home slice inside the S1D1 domain, with every other "
              "NUMA domain flat near zero — the HitME directory is homed on a single slice.",
              _sum_fig2),
-    "fig3": (2, "[Figure 3]  28×28 slice-mapping matrix",
+    "fig3": (2, "[Figure 4]  28×28 slice-mapping matrix",
              "figure3_benchmark10.png",
              "A clean bright diagonal: each accessed home slice lights up exactly one "
              "observed CHA slice (a one-to-one mapping).",
              _sum_fig3),
-    "fig5": (3, "[Figure 5]  MD-cache hit vs miss access latency",
+    "fig5": (3, "[Figure 6]  MD-cache hit vs miss access latency",
              "figure5_benchmark11.png",
              "Two clearly separated latency modes — a fast MD-hit peak and a slower "
              "MD-miss peak. The gap between them is the exploitable timing signal.",
@@ -444,18 +444,18 @@ ARTIFACTS = {
              "The 'After CLFLUSH' bar collapses to ~0 beside the tall 'No flush' bar — "
              "a single CLFLUSH evicts the directory entry.",
              _sum_obs2),
-    "covert": (6, "[Figure 11]  cross-domain covert channel (Trojan → Spy)",
+    "covert": (6, "[Figure 12]  cross-domain covert channel (Trojan → Spy)",
                "covert_channel.png",
                "Each shaded band is one transmitted bit: the transmission-set trace rises "
                "when the set is evicted (a 1) and stays low when it survives (a 0); the "
                "decoded bits under the axis match the sent string.",
                _sum_covert),
-    "sidechannel": (7, "[Figure 13]  ML-model fingerprinting side channel",
+    "sidechannel": (7, "[Figure 14]  ML-model fingerprinting side channel",
                     "sc_confusion.png",
                     "A bright block-diagonal confusion matrix — models are separable by "
                     "their cross-socket MD footprint, far above chance.",
                     _sum_sc),
-    "sc_gram": (7, "[Figure 14]  HitME memorygrams",
+    "sc_gram": (7, "[Figure 15]  HitME memorygrams",
                 "sc_memorygram.png",
                 "Different models should show distinct patterns.",
                 _sum_gram),
