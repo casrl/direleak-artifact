@@ -405,7 +405,7 @@ def _sum_sc(repo):
         n = len(d["labels"])
         out.append(f"{lab}: top-1 {100 * float(d['acc']):.0f}% · top-3 "
                    f"{100 * float(d['top3']):.0f}%  ({n} classes, chance {100.0 / n:.1f}%)")
-    out.append("bright block-diagonal; most residual confusions are between closely related models")
+    out.append("bright block-diagonal; confusions fall between closely related models")
     return out
 
 def _sum_gram(repo):
@@ -413,9 +413,8 @@ def _sum_gram(repo):
     d = np.load(repo / "sidechannel_offline/data/subset_traces.npz", allow_pickle=False)
     nl, nc = int(d["nline"]), int(d["ncol"])
     yi = d["y_inst"]
-    return [f"{len(yi)} shipped traces over {len(set(yi.tolist()))} model instances",
-            f"each memorygram = {nl} samples (200 ms) x {nc} HitME sets, log miss counts",
-            "two independent traces per model, one per row"]
+    return [f"{len(yi)} traces, {len(set(yi.tolist()))} model instances",
+            f"{nl} samples (200 ms) x {nc} HitME sets, log miss counts"]
 
 # key -> (artifact no., title, figure filename or None, what-to-look-for, summarizer)
 ARTIFACTS = {
@@ -456,11 +455,10 @@ ARTIFACTS = {
                     "A bright block-diagonal confusion matrix — models are separable by "
                     "their cross-socket MD footprint, far above chance.",
                     _sum_sc),
-    "sc_gram": (7, "[Figure 14]  HitME memorygrams (same artifact)",
+    "sc_gram": (7, "[Figure 14]  HitME memorygrams",
                 "sc_memorygram.png",
-                "Each column is one model and each row one independent trace of it. The "
-                "bright horizontal bands repeat between a model's own two samples and shift "
-                "between models — that per-model structure is what the classifier reads.",
+                "One model per column, two traces each. The bright bands repeat across a "
+                "model's own two rows and shift between models.",
                 _sum_gram),
 }
 

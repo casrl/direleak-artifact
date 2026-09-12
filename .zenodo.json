@@ -1,0 +1,21 @@
+{
+  "upload_type": "software",
+  "title": "DireLeak: Cross-socket Cache Timing Channels Exploiting Memory Directory (MICRO 2026 artifact)",
+  "description": "<p>Artifact for the MICRO 2026 paper <em>DireLeak: Cross-socket Cache Timing Channels Exploiting Memory Directory</em>. It reverse-engineers the geometry and allocation policy of the Intel memory directory (MD/HitME) cache and builds two attacks on top of it: a cross-domain covert channel between a domain-isolated trojan and spy, and an ML-model fingerprinting side channel. A menu-driven orchestrator provisions the host, drives the counter server, runs each experiment and renders the paper figures inline in the terminal.</p><p>Artifacts 1-6 require a dual-socket Intel Xeon host with the memory directory cache. Artifact 7 (Figures 13 and 14) ships the trained classifiers and 300 real attack traces and runs offline on any machine with numpy and matplotlib.</p>",
+  "creators": [
+    {"name": "Chowdhuryy, Md Hafizul Islam"},
+    {"name": "Cai, Kunbei"},
+    {"name": "Zhang, Zhenkai"},
+    {"name": "Zheng, Hao"},
+    {"name": "Yao, Fan"}
+  ],
+  "keywords": [
+    "microarchitectural security",
+    "side channel",
+    "covert channel",
+    "cache coherence",
+    "memory directory",
+    "model fingerprinting",
+    "Intel Xeon"
+  ]
+}

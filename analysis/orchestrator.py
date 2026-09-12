@@ -49,7 +49,7 @@ EXPERIMENTS = [
      "script": "tools/run_covert.sh", "args": ["2", "8", "01101001", "16"],
      "plotter": "analysis/plot_covert.py", "figure": "covert_channel.png"},
     {"key": "sidechannel", "kind": "sidechannel",
-     "title": "[Figure. 13+14] ML-model fingerprinting side channel (30 models, offline)",
+     "title": "[Figure. 13+14] ML-model fingerprinting side channel (30 models)",
      "script": "sidechannel_offline/classify_offline.py"},
 ]
 
@@ -395,10 +395,9 @@ def run_covert(exp):
     print("  NOTE: server was stopped for this artifact; it will auto-restart when you pick a framework artifact (or press 'r').")
 
 def run_sidechannel(exp):
-    # replayed from the shipped classifiers + trace subset: no hardware, no root,
-    # and the counter server keeps running.
+    # offline replay from the shipped classifiers: no hardware, no root, server stays up.
     print(f"▶ {exp['title']}")
-    print("  classifying the shipped trace subset with the pre-trained models (a few seconds) …")
+    print("  classifying the shipped traces …")
     rc = stream(["python3", exp["script"]])
     if rc != 0:
         print("✗ offline classification failed."); return

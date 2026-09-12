@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: If you use this artifact, please cite the DireLeak paper.
+title: DireLeak MICRO 2026 artifact
+abstract: >-
+  Reverse-engineers the geometry and allocation policy of the Intel memory
+  directory (MD/HitME) cache and builds two attacks on it: a cross-domain
+  covert channel and an ML-model fingerprinting side channel.
+authors:
+  - family-names: Chowdhuryy
+    given-names: Md Hafizul Islam
+  - family-names: Cai
+    given-names: Kunbei
+  - family-names: Zhang
+    given-names: Zhenkai
+  - family-names: Zheng
+    given-names: Hao
+  - family-names: Yao
+    given-names: Fan
+preferred-citation:
+  type: conference-paper
+  title: "DireLeak: Cross-socket Cache Timing Channels Exploiting Memory Directory"
+  year: 2026
+  collection-title: >-
+    Proceedings of the 59th IEEE/ACM International Symposium on
+    Microarchitecture (MICRO)
+  authors:
+    - family-names: Chowdhuryy
+      given-names: Md Hafizul Islam
+    - family-names: Cai
+      given-names: Kunbei
+    - family-names: Zhang
+      given-names: Zhenkai
+    - family-names: Zheng
+      given-names: Hao
+    - family-names: Yao
+      given-names: Fan

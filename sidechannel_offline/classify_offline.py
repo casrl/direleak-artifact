@@ -103,7 +103,7 @@ def plot_memorygram(X, yi, insts, nline, ncol, out):
             if c == 0:
                 ax.set_ylabel(f"sample {r+1}\ntime →", fontsize=9)
     fig.suptitle(f"HitME memorygrams — log per-set miss counts "
-                 f"(y = {nline} samples = 200 ms,  x = {ncol} HitME sets)", fontsize=11)
+                 f"(y = {nline} samples = 200 ms, x = {ncol} sets)", fontsize=11)
     fig.tight_layout(rect=[0, 0, 1, 0.94])
     fig.savefig(os.path.splitext(out)[0] + ".svg")
     fig.savefig(out, dpi=150); plt.close(fig)
@@ -124,10 +124,9 @@ def main():
     yi = d["y_inst"].astype(int)
     ya = d["y_arch"].astype(int)
 
-    print(f"[offline] models built {str(M['built'])} from real HitME traces "
-          f"({nline} samples x {ncol} sets)")
-    print(f"[offline] classifying {len(yi)} shipped traces "
-          f"({len(set(yi.tolist()))} instances / {len(set(ya.tolist()))} architectures)")
+    print(f"[offline] model built {str(M['built'])}  ({nline} samples x {ncol} sets)")
+    print(f"[offline] {len(yi)} traces, {len(set(yi.tolist()))} instances / "
+          f"{len(set(ya.tolist()))} architectures")
 
     S = (features(X, mode, nbins, nline, ncol) - M["mean"].astype(np.float32)) \
         / M["scale"].astype(np.float32)

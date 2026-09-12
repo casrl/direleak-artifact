@@ -57,13 +57,17 @@ To provision the host without launching the menu, run `sudo ./setup_env.sh` (und
 | 4 | Table 3 | Residency turns on only for cross-socket transfers that leave the home holding a copy; all other transitions stay non-resident. |
 | 5 | Obs. 2 | The post-`CLFLUSH` bar collapses to ~0 next to the tall no-flush bar — a single `CLFLUSH` invalidates the directory entry. |
 | 6 | Figure 11 | Covert channel: the transmission set is evicted for a `1` and survives for a `0`; the decoded bit-stream matches the sent `01101001`. |
-| 7 | Figures 13 & 14 | Side channel: a bright block-diagonal confusion matrix — models are separable by their cross-socket MD footprint, far above chance — plus the memorygrams the classifier reads, where repeated traces of one model share a banding pattern that differs between models. **Runs offline on any machine**, no hardware or root required: see [`sidechannel_offline/`](sidechannel_offline/). |
+| 7 | Figures 13 & 14 | Side channel: a bright block-diagonal confusion matrix — models are separable by their cross-socket MD footprint, far above chance — plus the memorygrams it reads. Runs offline, no hardware needed. |
 
 ## Hardware access
 
 Artifacts 1–6 require a genuine dual-socket Intel Xeon host with the memory directory cache. If reviewers need hardware access, **coordinated (remote) access to the 2× Sapphire Rapids machine can be provided upon request.**
 
-**Artifact 7 is the exception.** The model-fingerprinting attack ships its trained classifiers together with a subset of the real attack traces and replays the classification offline, so it reproduces Figures 13 and 14 on any machine with `numpy` and `matplotlib` — no Xeon, no root, no collection. See [`sidechannel_offline/`](sidechannel_offline/).
+Artifact 7 is the exception. It ships the trained classifiers and 300 of the attack traces, so it reproduces Figures 13 and 14 on any machine with `numpy` and `matplotlib`:
+
+```bash
+python3 sidechannel_offline/classify_offline.py
+```
 
 ## Citing our paper
 
