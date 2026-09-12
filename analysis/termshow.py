@@ -457,8 +457,7 @@ ARTIFACTS = {
                     _sum_sc),
     "sc_gram": (7, "[Figure 14]  HitME memorygrams",
                 "sc_memorygram.png",
-                "One model per column, two traces each. The bright bands repeat across a "
-                "model's own two rows and shift between models.",
+                "Different models should show distinct patterns.",
                 _sum_gram),
 }
 
